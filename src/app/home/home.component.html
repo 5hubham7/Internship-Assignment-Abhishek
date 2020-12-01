@@ -1,19 +1,22 @@
 <div>
-  <div class="row bg-primary text-white p-5">
+  <div class="row text-white p-5 mt-5" style="background-color: dodgerblue">
     <div class="col">
-      <h3 class="h3">Products</h3>
+      <h3 class="h3 font-weight-bold">Products</h3>
     </div>
     <div class="col">
       <button
-        class="btn btn-light text-uppercase float-right"
+        class="btn btn-light font-weight-bold text-uppercase float-right"
         (click)="addProduct()"
       >
         add new product
       </button>
     </div>
   </div>
-  <div class="m-2 p-2 bg-white">
-    <table class="table">
+  <div
+    class="form p-3 bg-white"
+    style="margin: 10px; margin-top: -20px; border-radius: 10px"
+  >
+    <table class="table p-3">
       <thead>
         <tr>
           <th>ID</th>
@@ -28,10 +31,23 @@
         <tr *ngFor="let product of productList; let i = index">
           <td>{{ productList[i].id }}</td>
           <td>{{ productList[i].name }}</td>
-          <td>{{ productList[i].category }}</td>
+          <td>{{ productList[i].categories }}</td>
           <td>{{ productList[i].price }}</td>
           <td>{{ productList[i].quantity }}</td>
-          <td>{{ productList[i].active }}</td>
+          <td>
+            <i
+              class="fa fa-check-circle"
+              style="color: green"
+              aria-hidden="true"
+              *ngIf="product.status == 'Active'"
+            ></i>
+            <i
+              class="fa fa-times-circle"
+              style="color: red"
+              aria-hidden="true"
+              *ngIf="product.status == 'InActive'"
+            ></i>
+          </td>
         </tr>
       </tbody>
     </table>

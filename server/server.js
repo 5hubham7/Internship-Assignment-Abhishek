@@ -55,15 +55,15 @@ MongoClient.connect(
           var query = {
             id: count + 1,
             name: req.body.name,
-            category: req.body.category,
+            categories: req.body.categories,
             price: req.body.price,
             quantity: req.body.quantity,
             status: "Active",
           };
           collection.insertOne(query, (err, res) => {
             if (err) throw err;
+            console.log(res);
           });
-          res.send("Product inserted successfully!");
         });
       });
     });
