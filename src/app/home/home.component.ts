@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
-import { Route } from '@angular/compiler/src/core';
-import { AfterViewInit, Component, OnChanges, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -10,7 +9,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
   productList: any;
-
   constructor(private router: Router, private http: HttpClient) {
     router.events.subscribe((val) => {
       this.http
@@ -20,12 +18,9 @@ export class HomeComponent implements OnInit {
         });
     });
   }
-
   ngOnInit(): void {}
-
   addProduct() {
     this.router.navigate(['add']);
   }
-
   getProducts() {}
 }
