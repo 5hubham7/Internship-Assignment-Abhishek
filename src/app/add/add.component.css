@@ -1,0 +1,9 @@
+.label {
+  top: -10px;
+  position: absolute;
+  background-color: white;
+}
+
+.input {
+  height: 3rem;
+}
