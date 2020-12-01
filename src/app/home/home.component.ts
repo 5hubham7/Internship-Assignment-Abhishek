@@ -1,5 +1,7 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-home',
@@ -9,34 +11,18 @@ import { Router } from '@angular/router';
 export class HomeComponent implements OnInit {
   productList: any;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private http: HttpClient) {}
 
   ngOnInit(): void {
-    this.getProducts();
+    this.http.get('http://localhost:3001/displayProducts').subscribe((res) => {
+      this.productList = res as string;
+    });
   }
 
   addProduct() {
+    console.log(this.productList);
     this.router.navigate(['add']);
   }
 
-  getProducts() {
-    this.productList = [
-      {
-        id: 1,
-        name: 'Shubham',
-        category: 'A',
-        price: 1000,
-        quantity: 10,
-        active: 'yes',
-      },
-      {
-        id: 2,
-        name: 'Pavan',
-        category: 'A',
-        price: 3000,
-        quantity: 10,
-        active: 'yes',
-      },
-    ];
-  }
+  getProducts() {}
 }
