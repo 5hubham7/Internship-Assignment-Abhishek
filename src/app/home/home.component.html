@@ -1,11 +1,14 @@
 <div>
-  <div class="row text-white p-5 mt-5" style="background-color: dodgerblue">
+  <div
+    class="row text-white p-5 mt-5"
+    style="background-color: deepskyblue; height: 200px"
+  >
     <div class="col">
-      <h3 class="h3 font-weight-bold">Products</h3>
+      <h3 class="h3">Products</h3>
     </div>
     <div class="col">
       <button
-        class="btn btn-light font-weight-bold text-uppercase float-right"
+        class="btn btn-light text-uppercase float-right"
         (click)="addProduct()"
       >
         add new product
@@ -14,10 +17,10 @@
   </div>
   <div
     class="form p-3 bg-white"
-    style="margin: 10px; margin-top: -20px; border-radius: 10px"
+    style="margin: 10px; margin-top: -60px; border-radius: 10px"
   >
     <table class="table p-3">
-      <thead>
+      <thead class="font-weight-light" style="color: gray">
         <tr>
           <th>ID</th>
           <th>Name</th>
@@ -32,20 +35,40 @@
           <td>{{ productList[i].id }}</td>
           <td>{{ productList[i].name }}</td>
           <td>{{ productList[i].categories }}</td>
-          <td>{{ productList[i].price }}</td>
-          <td>{{ productList[i].quantity }}</td>
+          <td>{{ "$" + productList[i].price }}</td>
+          <td>
+            <i
+              class="fa fa-circle"
+              aria-hidden="true"
+              *ngIf="product.quantity <= 10"
+              style="color: red; font-size: 9px"
+            ></i>
+            <i
+              class="fa fa-circle"
+              aria-hidden="true"
+              *ngIf="10 < product.quantity && product.quantity <= 100"
+              style="color: yellow; font-size: 9px"
+            ></i>
+            <i
+              class="fa fa-circle"
+              aria-hidden="true"
+              *ngIf="product.quantity > 100"
+              style="color: green; font-size: 9px"
+            ></i>
+            {{ productList[i].quantity }}
+          </td>
           <td>
             <i
               class="fa fa-check-circle"
               style="color: green"
               aria-hidden="true"
-              *ngIf="product.status == 'Active'"
+              *ngIf="product.quantity > 0"
             ></i>
             <i
               class="fa fa-times-circle"
               style="color: red"
               aria-hidden="true"
-              *ngIf="product.status == 'InActive'"
+              *ngIf="product.quantity == 0"
             ></i>
           </td>
         </tr>
